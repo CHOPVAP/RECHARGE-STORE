@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlTag">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELITE RECHARGE | برو</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <style>
+        :root {
+            --primary: #ff0000;
+            --primary-dark: #8b0000;
+            --primary-glow: rgba(255, 0, 0, 0.5);
+            --bg-dark: #050505;
+            --card-bg: #111111;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-muted: #888;
+            --success: #00ff88;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', 'Poppins', sans-serif; }
+
+        body {
+            background: var(--bg-dark);
+            color: white;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 0, 0, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 0, 0.05) 0%, transparent 40%);
+            min-height: 100vh;
+        }
+
+        /* Navbar Enhanced */
+        .navbar {
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            background: rgba(5, 5, 5, 0.8);
+        }
+
+        .logo { font-size: 22px; font-weight: 900; text-decoration: none; color: white; letter-spacing: 1px; }
+        .logo span { color: var(--primary); text-shadow: 0 0 15px var(--primary-glow); }
+
+        .lang-switch {
+            background: linear-gradient(45deg, var(--primary-dark), var(--primary));
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 12px;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        /* Hero Section */
+        .hero { padding: 60px 20px 40px; text-align: center; }
+        .hero h1 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        .hero h1 span {
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Search Box Premium */
+        .search-box { max-width: 550px; margin: 30px auto; position: relative; }
+        .search-box input {
+            width: 100%;
+            padding: 18px 30px;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            color: white;
+            font-size: 16px;
+            outline: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .search-box input:focus { border-color: var(--primary); box-shadow: 0 0 20px var(--primary-glow); }
+
+        /* Filters */
+        .filter-wrapper { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
+        .filter-btn {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: #ccc;
+            padding: 10px 22px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 5px 15px var(--primary-glow); }
+
+        /* Grid System */
+        .container { padding: 0 8% 80px; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 30px 15px;
+            border-radius: 20px;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+        .card:hover::before { transform: translateX(100%); }
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(255, 0, 0, 0.15);
+        }
+
+        /* Platform Status Dot */
+        .status-dot {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--success);
+        }
+
+        .card i { font-size: 45px; margin-bottom: 15px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3)); }
+        .card .title { font-weight: 700; font-size: 16px; margin-bottom: 5px; display: block; }
+        .card .type-tag { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Icon Colors */
+        .icon-1xbet { color: #2067b2; }
+        .icon-melbet { color: #f79e1b; }
+        .icon-linebet { color: #009144; }
+        .icon-betwinner { color: #ffdf00; }
+        .icon-mostbet { color: #2b2e3b; }
+        .icon-megapari { color: #ff4131; }
+        .icon-starz { color: #000; } /* 888starz */
+
+        /* Premium Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(10px);
+        }
+        .modal {
+            background: #151515;
+            width: 90%;
+            max-width: 420px;
+            padding: 40px 30px;
+            border-radius: 25px;
+            border: 1px solid var(--border);
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,1);
+        }
+        .modal h2 { margin-top: 15px; font-weight: 900; }
+        
+        .input-group { margin-bottom: 20px; text-align: right; }
+        .input-group label { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; display: block; padding-right: 5px; }
+
+        .input-field {
+            width: 100%;
+            background: #000;
+            border: 1px solid var(--border);
+            padding: 15px;
+            border-radius: 12px;
+            color: white;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        .input-field:focus { border-color: var(--primary); outline: none; }
+
+        .btn-send {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 800;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .btn-whatsapp { background: linear-gradient(45deg, #25d366, #128c7e); }
+        .btn-telegram { background: linear-gradient(45deg, #0088cc, #006699); }
+
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .container { padding: 0 15px; }
+            .navbar { padding: 15px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="#" class="logo">ELITE<span>RECHARGE</span></a>
+    <button class="lang-switch" onclick="toggleLanguage()" id="langBtn">FRANCE</button>
+</nav>
+
+<header class="hero">
+    <h1 id="heroTitle" class="animate__animated animate__fadeInDown">شحن رقمي <span>بلا حدود</span></h1>
+    <p id="heroSub" style="color: var(--text-muted);" class="animate__animated animate__fadeInUp">بوابتك الرسمية لشحن الحسابات والمحافظ الدولية</p>
+    
+    <div class="search-box animate__animated animate__zoomIn">
+        <input type="text" id="searchInput" placeholder="ابحث عن منصة (مثال: 1xbet)..." onkeyup="searchPlatforms()">
+    </div>
+
+    <div class="filter-wrapper animate__animated animate__fadeIn" id="filters"></div>
+</header>
+
+<main class="container">
+    <div class="grid" id="platformsGrid"></div>
+</main>
+
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal animate__animated animate__zoomIn">
+        <div id="modalHeader" style="text-align: center; margin-bottom: 25px;"></div>
+        
+        <div class="input-group">
+            <label id="labelAmount">المبلغ المطلوب شحنه ($)</label>
+            <input type="number" id="amountInput" class="input-field" placeholder="0.00">
+        </div>
+
+        <div class="input-group">
+            <label id="labelId">معرف الحساب (ID) أو البريد الإلكتروني</label>
+            <input type="text" id="walletInput" class="input-field" placeholder="Ex: 12345678">
+        </div>
+
+        <button class="btn-send btn-whatsapp" onclick="sendOrder('whatsapp')">
+            <i class="fab fa-whatsapp"></i> <span id="btnWa">إرسال عبر واتساب</span>
+        </button>
+        <button class="btn-send btn-telegram" onclick="sendOrder('telegram')">
+            <i class="fab fa-telegram"></i> <span id="btnTg">إرسال عبر تلغرام</span>
+        </button>
+        
+        <button onclick="closeModal()" style="background:transparent; color:#555; width:100%; margin-top:20px; border:none; cursor:pointer; font-weight: bold;">إغلاق النافذة</button>
+    </div>
+</div>
+
+<script>
+    let currentLang = 'ar';
+    let selectedPlatform = "";
+
+    const translations = {
+        ar: {
+            heroTitle: 'شحن رقمي <span>بلا حدود</span>',
+            heroSub: 'بوابتك الرسمية لشحن الحسابات والمحافظ الدولية',
+            labelAmount: 'المبلغ المطلوب شحنه ($)',
+            labelId: 'معرف الحساب (ID) أو البريد الإلكتروني',
+            btnWa: 'إرسال عبر واتساب',
+            btnTg: 'إرسال عبر تلغرام',
+            filters: { All: 'الكل', Gambling: 'مراهنات', Crypto: 'عملات', Bank: 'بنوك', Games: 'ألعاب' },
+            tags: { Digital: 'محفظة', Bank: 'بنك', Games: 'لعبة', Crypto: 'عملة', Gambling: 'مراهنات' }
+        },
+        fr: {
+            heroTitle: 'Recharge <span>Elite</span>',
+            heroSub: 'Votre passerelle officielle pour les comptes internationaux',
+            labelAmount: 'Montant à recharger ($)',
+            labelId: 'ID du compte ou Email',
+            btnWa: 'Envoyer via WhatsApp',
+            btnTg: 'Envoyer via Telegram',
+            filters: { All: 'Tout', Gambling: 'Betting', Crypto: 'Crypto', Bank: 'Banques', Games: 'Jeux' },
+            tags: { Digital: 'Wallet', Bank: 'Banque', Games: 'Jeux', Crypto: 'Crypto', Gambling: 'Betting' }
+        }
+    };
+
+    const platforms = [
+        // المراهنات (إضافة الجديد)
+        { name: '1XBET', icon: 'fa-solid fa-star', type: 'Gambling', class: 'icon-1xbet' },
+        { name: 'Melbet', icon: 'fa-solid fa-trophy', type: 'Gambling', class: 'icon-melbet' },
+        { name: 'Linebet', icon: 'fa-solid fa-circle-check', type: 'Gambling', class: 'icon-linebet' },
+        { name: 'Betwinner', icon: 'fa-solid fa-crown', type: 'Gambling', class: 'icon-betwinner' },
+        { name: 'MostBet', icon: 'fa-solid fa-dice', type: 'Gambling', class: 'icon-mostbet' },
+        { name: 'Megapari', icon: 'fa-solid fa-gamepad', type: 'Gambling', class: 'icon-megapari' },
+        { name: '888Starz', icon: 'fa-solid fa-clapperboard', type: 'Gambling', class: 'icon-starz' },
+        
+        // العملات والمحافظ
+        { name: 'USDT (TRC20)', icon: 'fa-solid fa-t', type: 'Crypto', class: 'icon-usdt' },
+        { name: 'Binance', icon: 'fa-solid fa-coins', type: 'Crypto', class: 'icon-binance' },
+        { name: 'Wise', icon: 'fa-solid fa-building-columns', type: 'Bank', class: 'icon-wise' },
+        { name: 'PayPal', icon: 'fa-brands fa-paypal', type: 'Digital', class: 'icon-paypal' },
+        { name: 'Payoneer', icon: 'fa-solid fa-p', type: 'Bank', class: 'icon-payoneer' },
+        { name: 'RedotPay', icon: 'fa-solid fa-credit-card', type: 'Digital', class: 'icon-redotpay' },
+        
+        // الألعاب
+        { name: 'PUBG Mobile', icon: 'fa-solid fa-gun', type: 'Games', class: 'icon-pubg' },
+        { name: 'Free Fire', icon: 'fa-solid fa-fire', type: 'Games', class: 'icon-freefire' }
+    ];
+
+    function toggleLanguage() {
+        currentLang = currentLang === 'ar' ? 'fr' : 'ar';
+        document.getElementById('htmlTag').dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+        document.getElementById('langBtn').innerText = currentLang === 'ar' ? 'FRANCE' : 'ARABIC';
+        updateContent();
+    }
+
+    function updateContent() {
+        const lang = translations[currentLang];
+        document.getElementById('heroTitle').innerHTML = lang.heroTitle;
+        document.getElementById('heroSub').innerText = lang.heroSub;
+        document.getElementById('labelAmount').innerText = lang.labelAmount;
+        document.getElementById('labelId').innerText = lang.labelId;
+        document.getElementById('btnWa').innerText = lang.btnWa;
+        document.getElementById('btnTg').innerText = lang.btnTg;
+        renderFilters();
+        renderPlatforms();
+    }
+
+    function renderFilters() {
+        const container = document.getElementById('filters');
+        container.innerHTML = '';
+        Object.keys(translations[currentLang].filters).forEach(key => {
+            const btn = document.createElement('button');
+            btn.className = `filter-btn ${key === 'All' ? 'active' : ''}`;
+            btn.innerText = translations[currentLang].filters[key];
+            btn.onclick = (e) => filterItems(key, e.target);
+            container.appendChild(btn);
+        });
+    }
+
+    function renderPlatforms(data = platforms) {
+        const grid = document.getElementById('platformsGrid');
+        grid.innerHTML = '';
+        data.forEach(p => {
+            const card = document.createElement('div');
+            card.className = `card animate__animated animate__fadeInUp`;
+            card.onclick = () => openModal(p.name, p.icon, p.class);
+            card.innerHTML = `
+                <div class="status-dot"></div>
+                <i class="${p.icon} ${p.class}"></i>
+                <span class="title">${p.name}</span>
+                <span class="type-tag">${translations[currentLang].tags[p.type]}</span>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    function filterItems(type, btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderPlatforms(type === 'All' ? platforms : platforms.filter(p => p.type === type));
+    }
+
+    function searchPlatforms() {
+        const term = document.getElementById('searchInput').value.toLowerCase();
+        renderPlatforms(platforms.filter(p => p.name.toLowerCase().includes(term)));
+    }
+
+    function openModal(name, icon, cls) {
+        selectedPlatform = name;
+        document.getElementById('modalHeader').innerHTML = `<i class="${icon} ${cls}" style="font-size:60px"></i><h2>${name}</h2>`;
+        document.getElementById('modalOverlay').style.display = 'flex';
+    }
+
+    function closeModal() { document.getElementById('modalOverlay').style.display = 'none'; }
+
+    function sendOrder(method) {
+        const amount = document.getElementById('amountInput').value;
+        const id = document.getElementById('walletInput').value;
+        const phone = "+212713041921"; // رقمك
+        
+        if(!amount || !id) {
+            alert(currentLang === 'ar' ? "يرجى ملء جميع الحقول" : "Veuillez remplir tous les champs");
+            return;
+        }
+
+        const text = `طلب شحن جديد:\nالمنصة: ${selectedPlatform}\nالمبلغ: ${amount}$\nID/Email: ${id}`;
+        
+        if(method === 'whatsapp') {
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+        } else {
+            // تلغرام يحتاج معرف مستخدم أو بوت، سنفترض توجيه عام هنا
+            window.open(`https://t.me/share/url?url=${phone}&text=${encodeURIComponent(text)}`, '_blank');
+        }
+    }
+
+    updateContent();
+</script>
+</body>
+</html>
