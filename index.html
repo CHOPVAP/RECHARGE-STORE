@@ -1,416 +1,303 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" id="htmlTag">
+<html lang="fr" dir="ltr" id="htmlTag">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ELITE RECHARGE | برو</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>ELITE RECHARGE | HUB GLOBAL</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
         :root {
             --primary: #ff0000;
-            --primary-dark: #8b0000;
-            --primary-glow: rgba(255, 0, 0, 0.5);
-            --bg-dark: #050505;
-            --card-bg: #111111;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.08);
-            --text-muted: #888;
-            --success: #00ff88;
+            --accent: #00f2ff;
+            --bg: #050505;
+            --card-glass: rgba(255, 255, 255, 0.03);
+            --neon-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', 'Poppins', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        body { background: var(--bg); color: white; overflow-x: hidden; font-family: 'Cairo', sans-serif; }
 
-        body {
-            background: var(--bg-dark);
-            color: white;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 0, 0, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(255, 0, 0, 0.05) 0%, transparent 40%);
-            min-height: 100vh;
+        .mesh-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: radial-gradient(at 0% 0%, rgba(255, 0, 0, 0.15) 0px, transparent 50%),
+                        radial-gradient(at 100% 100%, rgba(0, 242, 255, 0.1) 0px, transparent 50%);
+            filter: blur(80px); animation: meshMove 15s infinite alternate;
         }
+        @keyframes meshMove { 0% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
-        /* Navbar Enhanced */
         .navbar {
-            padding: 20px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(15px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border);
-            background: rgba(5, 5, 5, 0.8);
+            padding: 15px 8%; display: flex; justify-content: space-between; align-items: center;
+            backdrop-filter: blur(25px); position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.85);
         }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 24px; font-weight: 900; letter-spacing: 1px; }
+        .logo span { color: var(--primary); text-shadow: var(--neon-shadow); }
 
-        .logo { font-size: 22px; font-weight: 900; text-decoration: none; color: white; letter-spacing: 1px; }
-        .logo span { color: var(--primary); text-shadow: 0 0 15px var(--primary-glow); }
+        .lang-btn { background: var(--primary); color: white; border: none; padding: 8px 18px; border-radius: 30px; cursor: pointer; font-weight: bold; }
 
-        .lang-switch {
-            background: linear-gradient(45deg, var(--primary-dark), var(--primary));
-            border: none;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 12px;
-            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
-        }
+        .section-title { text-align: center; margin: 60px 0 30px; font-size: 28px; font-weight: 900; }
+        .section-title span { color: var(--primary); }
 
-        /* Hero Section */
-        .hero { padding: 60px 20px 40px; text-align: center; }
-        .hero h1 {
-            font-size: clamp(2rem, 6vw, 3.5rem);
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
-        .hero h1 span {
-            background: linear-gradient(to right, #fff, var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Search Box Premium */
-        .search-box { max-width: 550px; margin: 30px auto; position: relative; }
+        .hero { padding: 50px 20px; text-align: center; }
+        .hero h1 { font-size: clamp(2rem, 7vw, 3.5rem); font-weight: 900; margin-bottom: 20px; }
+        .hero h1 span { color: var(--primary); }
+        
+        .search-box { max-width: 600px; margin: 0 auto 30px; }
         .search-box input {
-            width: 100%;
-            padding: 18px 30px;
-            border-radius: 15px;
-            border: 1px solid var(--border);
-            background: var(--card-bg);
-            color: white;
-            font-size: 16px;
-            outline: none;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            width: 100%; padding: 20px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05); color: white; font-size: 16px; text-align: center; outline: none;
         }
-        .search-box input:focus { border-color: var(--primary); box-shadow: 0 0 20px var(--primary-glow); }
 
-        /* Filters */
-        .filter-wrapper { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
-        .filter-btn {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            color: #ccc;
-            padding: 10px 22px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
+        .tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 40px; flex-wrap: wrap; padding: 0 5%; }
+        .tab-btn {
+            padding: 8px 18px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.05);
+            background: var(--card-glass); color: #888; cursor: pointer; font-size: 12px; font-weight: bold;
         }
-        .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 5px 15px var(--primary-glow); }
+        .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-        /* Grid System */
-        .container { padding: 0 8% 80px; }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 20px;
-        }
+        .container { padding: 0 8% 50px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
 
         .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 30px 15px;
-            border-radius: 20px;
-            text-align: center;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
+            background: var(--card-glass); border: 1px solid rgba(255,255,255,0.03);
+            padding: 25px 10px; border-radius: 20px; text-align: center; cursor: pointer;
         }
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
-            transform: translateX(-100%);
-            transition: 0.5s;
-        }
-        .card:hover::before { transform: translateX(100%); }
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary);
-            box-shadow: 0 15px 35px rgba(255, 0, 0, 0.15);
-        }
+        .card:hover { transform: translateY(-8px); border-color: var(--primary); background: rgba(255,0,0,0.08); }
+        .card i { font-size: 40px; margin-bottom: 12px; display: block; }
+        .card span { font-size: 13px; font-weight: 800; }
 
-        /* Platform Status Dot */
-        .status-dot {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 8px;
-            height: 8px;
-            background: var(--success);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--success);
-        }
-
-        .card i { font-size: 45px; margin-bottom: 15px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3)); }
-        .card .title { font-weight: 700; font-size: 16px; margin-bottom: 5px; display: block; }
-        .card .type-tag { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* Icon Colors */
-        .icon-1xbet { color: #2067b2; }
-        .icon-melbet { color: #f79e1b; }
-        .icon-linebet { color: #009144; }
-        .icon-betwinner { color: #ffdf00; }
-        .icon-mostbet { color: #2b2e3b; }
-        .icon-megapari { color: #ff4131; }
-        .icon-starz { color: #000; } /* 888starz */
-
-        /* Premium Modal */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.95);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            backdrop-filter: blur(10px);
-        }
-        .modal {
-            background: #151515;
-            width: 90%;
-            max-width: 420px;
-            padding: 40px 30px;
-            border-radius: 25px;
-            border: 1px solid var(--border);
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,1);
-        }
-        .modal h2 { margin-top: 15px; font-weight: 900; }
+        .about-box { background: var(--card-glass); padding: 40px; border-radius: 30px; text-align: center; border: 1px solid rgba(255,255,255,0.05); max-width: 900px; margin: 0 auto; line-height: 1.8; }
         
-        .input-group { margin-bottom: 20px; text-align: right; }
-        .input-group label { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; display: block; padding-right: 5px; }
+        .reviews-grid { display: flex; gap: 20px; overflow-x: auto; padding: 20px 0; scrollbar-width: none; }
+        .review-card { min-width: 260px; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 20px; border-left: 4px solid var(--primary); }
+        .review-card h4 { color: var(--primary); margin-bottom: 5px; }
 
-        .input-field {
-            width: 100%;
-            background: #000;
-            border: 1px solid var(--border);
-            padding: 15px;
-            border-radius: 12px;
-            color: white;
-            font-size: 15px;
-            transition: 0.3s;
-        }
-        .input-field:focus { border-color: var(--primary); outline: none; }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.97); display: none; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(10px); }
+        .modal { background: #080808; width: 90%; max-width: 380px; padding: 35px 25px; border-radius: 30px; border: 1px solid var(--primary); text-align: center; }
+        .input-group { position: relative; margin-bottom: 15px; }
+        .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--primary); }
+        .input-field { width: 100%; background: #000; border: 1px solid #222; padding: 18px 15px 18px 45px; border-radius: 12px; color: white; font-size: 15px; outline: none; }
+        .btn-confirm { width: 100%; padding: 18px; background: linear-gradient(45deg, #25d366, #128c7e); border: none; border-radius: 12px; color: white; font-weight: 900; cursor: pointer; margin-top: 10px; }
 
-        .btn-send {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 12px;
-            color: white;
-            font-weight: 800;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 15px;
-        }
-
-        .btn-whatsapp { background: linear-gradient(45deg, #25d366, #128c7e); }
-        .btn-telegram { background: linear-gradient(45deg, #0088cc, #006699); }
-
-        @media (max-width: 600px) {
-            .grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-            .container { padding: 0 15px; }
-            .navbar { padding: 15px 5%; }
-        }
+        [dir="rtl"] .input-group i { left: auto; right: 15px; }
+        [dir="rtl"] .input-field { padding: 18px 45px 18px 15px; }
+        [dir="rtl"] .review-card { border-left: none; border-right: 4px solid var(--primary); }
+        
+        footer { text-align: center; padding: 50px; color: #444; font-size: 11px; }
     </style>
 </head>
 <body>
 
+<div class="mesh-bg"></div>
+
 <nav class="navbar">
-    <a href="#" class="logo">ELITE<span>RECHARGE</span></a>
-    <button class="lang-switch" onclick="toggleLanguage()" id="langBtn">FRANCE</button>
+    <div class="logo">ELITE<span>RECHARGE</span></div>
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn">العربية</button>
 </nav>
 
 <header class="hero">
-    <h1 id="heroTitle" class="animate__animated animate__fadeInDown">شحن رقمي <span>بلا حدود</span></h1>
-    <p id="heroSub" style="color: var(--text-muted);" class="animate__animated animate__fadeInUp">بوابتك الرسمية لشحن الحسابات والمحافظ الدولية</p>
-    
-    <div class="search-box animate__animated animate__zoomIn">
-        <input type="text" id="searchInput" placeholder="ابحث عن منصة (مثال: 1xbet)..." onkeyup="searchPlatforms()">
-    </div>
-
-    <div class="filter-wrapper animate__animated animate__fadeIn" id="filters"></div>
+    <h1 id="heroTitle">Futur de la <span>Recharge</span></h1>
+    <div class="search-box"><input type="text" id="searchInput" onkeyup="search()"></div>
+    <div class="tabs" id="tabContainer"></div>
 </header>
 
 <main class="container">
-    <div class="grid" id="platformsGrid"></div>
+    <div class="grid" id="mainGrid"></div>
+
+    <h2 class="section-title" id="aboutTitle">À propos <span>de nous</span></h2>
+    <div class="about-box" id="aboutText"></div>
+
+    <h2 class="section-title" id="reviewTitle">Avis des <span>clients</span></h2>
+    <div class="reviews-grid" id="reviewsGrid"></div>
 </main>
 
 <div class="modal-overlay" id="modalOverlay">
-    <div class="modal animate__animated animate__zoomIn">
-        <div id="modalHeader" style="text-align: center; margin-bottom: 25px;"></div>
-        
-        <div class="input-group">
-            <label id="labelAmount">المبلغ المطلوب شحنه ($)</label>
-            <input type="number" id="amountInput" class="input-field" placeholder="0.00">
+    <div class="modal">
+        <div id="mHeader"></div>
+        <div id="formFields">
+            <div class="input-group"><i class="fa-solid fa-money-bill-wave"></i><input type="number" id="mAmount" class="input-field"></div>
+            <div class="input-group"><i id="idIcon"></i><input type="text" id="mId" class="input-field"></div>
+            <button class="btn-confirm" onclick="startAI()"><i class="fab fa-whatsapp"></i> <span id="btnText"></span></button>
+            <button onclick="closeModal()" style="background:none; border:none; color:#555; margin-top:15px; cursor:pointer;" id="cancelBtn"></button>
         </div>
-
-        <div class="input-group">
-            <label id="labelId">معرف الحساب (ID) أو البريد الإلكتروني</label>
-            <input type="text" id="walletInput" class="input-field" placeholder="Ex: 12345678">
-        </div>
-
-        <button class="btn-send btn-whatsapp" onclick="sendOrder('whatsapp')">
-            <i class="fab fa-whatsapp"></i> <span id="btnWa">إرسال عبر واتساب</span>
-        </button>
-        <button class="btn-send btn-telegram" onclick="sendOrder('telegram')">
-            <i class="fab fa-telegram"></i> <span id="btnTg">إرسال عبر تلغرام</span>
-        </button>
-        
-        <button onclick="closeModal()" style="background:transparent; color:#555; width:100%; margin-top:20px; border:none; cursor:pointer; font-weight: bold;">إغلاق النافذة</button>
     </div>
 </div>
 
-<script>
-    let currentLang = 'ar';
-    let selectedPlatform = "";
+<footer>&copy; 2026 ELITE RECHARGE - PREMIUM DIGITAL SOLUTIONS</footer>
 
-    const translations = {
-        ar: {
-            heroTitle: 'شحن رقمي <span>بلا حدود</span>',
-            heroSub: 'بوابتك الرسمية لشحن الحسابات والمحافظ الدولية',
-            labelAmount: 'المبلغ المطلوب شحنه ($)',
-            labelId: 'معرف الحساب (ID) أو البريد الإلكتروني',
-            btnWa: 'إرسال عبر واتساب',
-            btnTg: 'إرسال عبر تلغرام',
-            filters: { All: 'الكل', Gambling: 'مراهنات', Crypto: 'عملات', Bank: 'بنوك', Games: 'ألعاب' },
-            tags: { Digital: 'محفظة', Bank: 'بنك', Games: 'لعبة', Crypto: 'عملة', Gambling: 'مراهنات' }
-        },
+<script>
+    let currentLang = 'fr';
+    const dict = {
         fr: {
-            heroTitle: 'Recharge <span>Elite</span>',
-            heroSub: 'Votre passerelle officielle pour les comptes internationaux',
-            labelAmount: 'Montant à recharger ($)',
-            labelId: 'ID du compte ou Email',
-            btnWa: 'Envoyer via WhatsApp',
-            btnTg: 'Envoyer via Telegram',
-            filters: { All: 'Tout', Gambling: 'Betting', Crypto: 'Crypto', Bank: 'Banques', Games: 'Jeux' },
-            tags: { Digital: 'Wallet', Bank: 'Banque', Games: 'Jeux', Crypto: 'Crypto', Gambling: 'Betting' }
+            title: 'Elite <span>Digital Hub</span>',
+            aboutT: 'À propos <span>de nous</span>',
+            aboutD: 'Elite Recharge est la référence ultime pour vos transactions numériques. Fiabilité, rapidité et sécurité sont les piliers de notre service premium.',
+            reviewT: 'Avis des <span>clients</span>',
+            search: 'Rechercher une plateforme...',
+            btn: 'Contactez-nous ici',
+            cancel: 'Retour',
+            reviews: [{n:'Anas',m:'Meilleur service au Maroc !'},{n:'Aya',m:'Rapide et sécurisé.'},{n:'Yasmin',m:'Support génial.'}],
+            placeholders: {
+                CRYPTO: { a: 'Montant ($)', i: 'Adresse Wallet', ic: 'fa-solid fa-wallet' },
+                GAME: { a: 'Quantité', i: 'ID Joueur', ic: 'fa-solid fa-gamepad' },
+                BANK: { a: 'Montant ($)', i: 'Email/ID', ic: 'fa-solid fa-university' },
+                BET: { a: 'Montant ($)', i: 'ID Compte', ic: 'fa-solid fa-user-shield' },
+                DEFAULT: { a: 'Montant', i: 'Identifiant', ic: 'fa-solid fa-fingerprint' }
+            },
+            cats: { ALL: 'Tout', BET: 'Paris', CRYPTO: 'Crypto', BANK: 'Banques', GAME: 'Jeux', CARDS: 'Cartes', STREAM: 'Stream' }
+        },
+        ar: {
+            title: 'إيليت <span>ديجيتال هوب</span>',
+            aboutT: 'من <span>نحن</span>',
+            aboutD: 'إيليت ريتشارج هي المرجع الأول لمعاملاتك الرقمية. الموثوقية والسرعة والأمان هي ركائز خدمتنا المميزة.',
+            reviewT: 'آراء <span>العملاء</span>',
+            search: 'ابحث عن منصة...',
+            btn: 'تواصل معنا هنا',
+            cancel: 'رجوع',
+            reviews: [{n:'أنس',m:'أفضل خدمة في المغرب!'},{n:'آية',m:'سريع وآمن جداً.'},{n:'ياسمين',m:'دعم فني رائع.'}],
+            placeholders: {
+                CRYPTO: { a: 'المبلغ بالدولار', i: 'عنوان المحفظة', ic: 'fa-solid fa-wallet' },
+                GAME: { a: 'الكمية/الجواهر', i: 'ID اللاعب', ic: 'fa-solid fa-gamepad' },
+                BANK: { a: 'المبلغ ($)', i: 'الحساب/الإيميل', ic: 'fa-solid fa-university' },
+                BET: { a: 'مبلغ الإيداع ($)', i: 'معرف الحساب', ic: 'fa-solid fa-user-shield' },
+                DEFAULT: { a: 'المبلغ', i: 'المعرف', ic: 'fa-solid fa-fingerprint' }
+            },
+            cats: { ALL: 'الكل', BET: 'مراهنات', CRYPTO: 'عملات', BANK: 'بنوك', GAME: 'ألعاب', CARDS: 'بطاقات', STREAM: 'بث' }
         }
     };
 
     const platforms = [
-        // المراهنات (إضافة الجديد)
-        { name: '1XBET', icon: 'fa-solid fa-star', type: 'Gambling', class: 'icon-1xbet' },
-        { name: 'Melbet', icon: 'fa-solid fa-trophy', type: 'Gambling', class: 'icon-melbet' },
-        { name: 'Linebet', icon: 'fa-solid fa-circle-check', type: 'Gambling', class: 'icon-linebet' },
-        { name: 'Betwinner', icon: 'fa-solid fa-crown', type: 'Gambling', class: 'icon-betwinner' },
-        { name: 'MostBet', icon: 'fa-solid fa-dice', type: 'Gambling', class: 'icon-mostbet' },
-        { name: 'Megapari', icon: 'fa-solid fa-gamepad', type: 'Gambling', class: 'icon-megapari' },
-        { name: '888Starz', icon: 'fa-solid fa-clapperboard', type: 'Gambling', class: 'icon-starz' },
-        
-        // العملات والمحافظ
-        { name: 'USDT (TRC20)', icon: 'fa-solid fa-t', type: 'Crypto', class: 'icon-usdt' },
-        { name: 'Binance', icon: 'fa-solid fa-coins', type: 'Crypto', class: 'icon-binance' },
-        { name: 'Wise', icon: 'fa-solid fa-building-columns', type: 'Bank', class: 'icon-wise' },
-        { name: 'PayPal', icon: 'fa-brands fa-paypal', type: 'Digital', class: 'icon-paypal' },
-        { name: 'Payoneer', icon: 'fa-solid fa-p', type: 'Bank', class: 'icon-payoneer' },
-        { name: 'RedotPay', icon: 'fa-solid fa-credit-card', type: 'Digital', class: 'icon-redotpay' },
-        
-        // الألعاب
-        { name: 'PUBG Mobile', icon: 'fa-solid fa-gun', type: 'Games', class: 'icon-pubg' },
-        { name: 'Free Fire', icon: 'fa-solid fa-fire', type: 'Games', class: 'icon-freefire' }
+        // BETTING
+        { name: '1XBET', icon: 'fa-solid fa-trophy', cat: 'BET', clr: '#2067b2' },
+        { name: 'Melbet', icon: 'fa-solid fa-medal', cat: 'BET', clr: '#f79e1b' },
+        { name: 'Linebet', icon: 'fa-solid fa-circle-check', cat: 'BET', clr: '#26a17b' },
+        { name: 'Betwinner', icon: 'fa-solid fa-crown', cat: 'BET', clr: '#9fe331' },
+        { name: 'MostBet', icon: 'fa-solid fa-dice', cat: 'BET', clr: '#2067b2' },
+        { name: '1Win', icon: 'fa-solid fa-star', cat: 'BET', clr: '#0052ff' },
+        { name: 'Megapari', icon: 'fa-solid fa-bolt', cat: 'BET', clr: '#ff0000' },
+        // CRYPTO
+        { name: 'USDT (TRC20)', icon: 'fa-solid fa-t', cat: 'CRYPTO', clr: '#26a17b' },
+        { name: 'Bitcoin (BTC)', icon: 'fa-brands fa-bitcoin', cat: 'CRYPTO', clr: '#f79e1b' },
+        { name: 'Ethereum (ETH)', icon: 'fa-brands fa-ethereum', cat: 'CRYPTO', clr: '#627eea' },
+        { name: 'Solana (SOL)', icon: 'fa-solid fa-s', cat: 'CRYPTO', clr: '#14f195' },
+        { name: 'Binance Pay', icon: 'fa-solid fa-coins', cat: 'CRYPTO', clr: '#f3ba2f' },
+        { name: 'Dogecoin', icon: 'fa-solid fa-dog', cat: 'CRYPTO', clr: '#ba9f33' },
+        { name: 'Litecoin', icon: 'fa-solid fa-l', cat: 'CRYPTO', clr: '#345d9d' },
+        { name: 'TRON (TRX)', icon: 'fa-solid fa-gem', cat: 'CRYPTO', clr: '#ff0013' },
+        { name: 'BUSD', icon: 'fa-solid fa-dollar-sign', cat: 'CRYPTO', clr: '#f3ba2f' },
+        // BANKS
+        { name: 'Wise', icon: 'fa-solid fa-building-columns', cat: 'BANK', clr: '#9fe331' },
+        { name: 'PayPal', icon: 'fa-brands fa-paypal', cat: 'BANK', clr: '#003087' },
+        { name: 'RedotPay', icon: 'fa-solid fa-credit-card', cat: 'BANK', clr: '#26a17b' },
+        { name: 'Pyypl', icon: 'fa-solid fa-p', cat: 'BANK', clr: '#ff0000' },
+        { name: 'Skrill', icon: 'fa-solid fa-s', cat: 'BANK', clr: '#802b5c' },
+        { name: 'Neteller', icon: 'fa-solid fa-n', cat: 'BANK', clr: '#82bc24' },
+        { name: 'Payeer', icon: 'fa-solid fa-wallet', cat: 'BANK', clr: '#00baf2' },
+        { name: 'Perfect Money', icon: 'fa-solid fa-m', cat: 'BANK', clr: '#ee1c25' },
+        // GAMES
+        { name: 'PUBG Mobile', icon: 'fa-solid fa-gun', cat: 'GAME', clr: '#f79e1b' },
+        { name: 'Free Fire', icon: 'fa-solid fa-fire', cat: 'GAME', clr: '#ff0000' },
+        { name: 'Call of Duty', icon: 'fa-solid fa-skull', cat: 'GAME', clr: '#ffffff' },
+        { name: 'Roblox', icon: 'fa-solid fa-cube', cat: 'GAME', clr: '#ffffff' },
+        { name: 'Valorant', icon: 'fa-solid fa-shield-halved', cat: 'GAME', clr: '#ff4655' },
+        { name: 'Mobile Legends', icon: 'fa-solid fa-khanda', cat: 'GAME', clr: '#2067b2' },
+        { name: 'League of Legends', icon: 'fa-solid fa-mask', cat: 'GAME', clr: '#0052ff' },
+        { name: 'Genshin Impact', icon: 'fa-solid fa-wind', cat: 'GAME', clr: '#4eb4ff' },
+        { name: 'Fortnite V-Bucks', icon: 'fa-solid fa-v', cat: 'GAME', clr: '#f79e1b' },
+        // CARDS
+        { name: 'Razer Gold', icon: 'fa-solid fa-coins', cat: 'CARDS', clr: '#9fe331' },
+        { name: 'Amazon', icon: 'fa-brands fa-amazon', cat: 'CARDS', clr: '#ff9900' },
+        { name: 'PlayStation', icon: 'fa-brands fa-playstation', cat: 'CARDS', clr: '#003087' },
+        { name: 'Apple Card', icon: 'fa-brands fa-apple', cat: 'CARDS', clr: '#a2aaad' },
+        { name: 'Google Play', icon: 'fa-brands fa-google-play', cat: 'CARDS', clr: '#34a853' },
+        { name: 'Steam Card', icon: 'fa-brands fa-steam', cat: 'CARDS', clr: '#171a21' },
+        { name: 'Xbox Card', icon: 'fa-brands fa-xbox', cat: 'CARDS', clr: '#107c10' },
+        { name: 'Nintendo eShop', icon: 'fa-solid fa-n', cat: 'CARDS', clr: '#e60012' },
+        { name: 'Discord Nitro', icon: 'fa-brands fa-discord', cat: 'CARDS', clr: '#5865F2' },
+        // STREAMING
+        { name: 'Netflix', icon: 'fa-brands fa-netflix', cat: 'STREAM', clr: '#e50914' },
+        { name: 'Spotify Premium', icon: 'fa-brands fa-spotify', cat: 'STREAM', clr: '#1ed760' },
+        { name: 'TikTok Coins', icon: 'fa-brands fa-tiktok', cat: 'STREAM', clr: '#ff0050' },
+        { name: 'YouTube Premium', icon: 'fa-brands fa-youtube', cat: 'STREAM', clr: '#ff0000' },
+        { name: 'Disney+', icon: 'fa-solid fa-plus', cat: 'STREAM', clr: '#003087' },
+        { name: 'Shahid VIP', icon: 'fa-solid fa-s', cat: 'STREAM', clr: '#00ff00' }
     ];
 
-    function toggleLanguage() {
-        currentLang = currentLang === 'ar' ? 'fr' : 'ar';
+    let activeS = null;
+
+    function toggleLang() {
+        currentLang = currentLang === 'fr' ? 'ar' : 'fr';
         document.getElementById('htmlTag').dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-        document.getElementById('langBtn').innerText = currentLang === 'ar' ? 'FRANCE' : 'ARABIC';
-        updateContent();
+        document.getElementById('langBtn').innerText = currentLang === 'ar' ? 'Français' : 'العربية';
+        updateUI();
     }
 
-    function updateContent() {
-        const lang = translations[currentLang];
-        document.getElementById('heroTitle').innerHTML = lang.heroTitle;
-        document.getElementById('heroSub').innerText = lang.heroSub;
-        document.getElementById('labelAmount').innerText = lang.labelAmount;
-        document.getElementById('labelId').innerText = lang.labelId;
-        document.getElementById('btnWa').innerText = lang.btnWa;
-        document.getElementById('btnTg').innerText = lang.btnTg;
-        renderFilters();
-        renderPlatforms();
+    function updateUI() {
+        const d = dict[currentLang];
+        document.getElementById('heroTitle').innerHTML = d.title;
+        document.getElementById('aboutTitle').innerHTML = d.aboutT;
+        document.getElementById('aboutText').innerText = d.aboutD;
+        document.getElementById('reviewTitle').innerHTML = d.reviewT;
+        document.getElementById('searchInput').placeholder = d.search;
+        document.getElementById('cancelBtn').innerText = d.cancel;
+        document.getElementById('reviewsGrid').innerHTML = d.reviews.map(r => `<div class="review-card"><h4>${r.n}</h4><p>"${r.m}"</p></div>`).join('');
+        initTabs();
+        render(platforms);
     }
 
-    function renderFilters() {
-        const container = document.getElementById('filters');
-        container.innerHTML = '';
-        Object.keys(translations[currentLang].filters).forEach(key => {
-            const btn = document.createElement('button');
-            btn.className = `filter-btn ${key === 'All' ? 'active' : ''}`;
-            btn.innerText = translations[currentLang].filters[key];
-            btn.onclick = (e) => filterItems(key, e.target);
-            container.appendChild(btn);
+    function initTabs() {
+        const t = document.getElementById('tabContainer'); t.innerHTML = '';
+        Object.keys(dict[currentLang].cats).forEach(k => {
+            const b = document.createElement('button');
+            b.className = `tab-btn ${k==='ALL'?'active':''}`;
+            b.innerText = dict[currentLang].cats[k];
+            b.onclick = () => {
+                document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
+                b.classList.add('active');
+                render(k==='ALL' ? platforms : platforms.filter(p=>p.cat===k));
+            };
+            t.appendChild(b);
         });
     }
 
-    function renderPlatforms(data = platforms) {
-        const grid = document.getElementById('platformsGrid');
-        grid.innerHTML = '';
+    function render(data) {
+        const g = document.getElementById('mainGrid'); g.innerHTML = '';
         data.forEach(p => {
-            const card = document.createElement('div');
-            card.className = `card animate__animated animate__fadeInUp`;
-            card.onclick = () => openModal(p.name, p.icon, p.class);
-            card.innerHTML = `
-                <div class="status-dot"></div>
-                <i class="${p.icon} ${p.class}"></i>
-                <span class="title">${p.name}</span>
-                <span class="type-tag">${translations[currentLang].tags[p.type]}</span>
-            `;
-            grid.appendChild(card);
+            const c = document.createElement('div');
+            c.className = 'card animate__animated animate__fadeIn';
+            c.onclick = () => {
+                activeS = p;
+                const config = dict[currentLang].placeholders[p.cat] || dict[currentLang].placeholders.DEFAULT;
+                document.getElementById('mHeader').innerHTML = `<i class="${p.icon}" style="color:${p.clr}; font-size:50px;"></i><h3 style="margin:10px 0">${p.name}</h3>`;
+                document.getElementById('mAmount').placeholder = config.a;
+                document.getElementById('mId').placeholder = config.i;
+                document.getElementById('idIcon').className = config.ic;
+                document.getElementById('btnText').innerText = dict[currentLang].btn;
+                document.getElementById('modalOverlay').style.display = 'flex';
+            };
+            c.innerHTML = `<i class="${p.icon}" style="color:${p.clr}"></i><span>${p.name}</span>`;
+            g.appendChild(c);
         });
     }
 
-    function filterItems(type, btn) {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        renderPlatforms(type === 'All' ? platforms : platforms.filter(p => p.type === type));
+    function startAI() {
+        const a = document.getElementById('mAmount').value, i = document.getElementById('mId').value;
+        if(!a || !i) return alert(currentLang==='ar'?'املأ البيانات':'Champs vides');
+        window.open(`https://wa.me/212713041921?text=${encodeURIComponent('🚀 COMMANDE ELITE:\nService: '+activeS.name+'\nQuantité: '+a+'\nID: '+i)}`, '_blank');
+        closeModal();
     }
 
-    function searchPlatforms() {
-        const term = document.getElementById('searchInput').value.toLowerCase();
-        renderPlatforms(platforms.filter(p => p.name.toLowerCase().includes(term)));
-    }
-
-    function openModal(name, icon, cls) {
-        selectedPlatform = name;
-        document.getElementById('modalHeader').innerHTML = `<i class="${icon} ${cls}" style="font-size:60px"></i><h2>${name}</h2>`;
-        document.getElementById('modalOverlay').style.display = 'flex';
+    function search() {
+        const q = document.getElementById('searchInput').value.toLowerCase();
+        render(platforms.filter(p => p.name.toLowerCase().includes(q)));
     }
 
     function closeModal() { document.getElementById('modalOverlay').style.display = 'none'; }
-
-    function sendOrder(method) {
-        const amount = document.getElementById('amountInput').value;
-        const id = document.getElementById('walletInput').value;
-        const phone = "+212713041921"; // رقمك
-        
-        if(!amount || !id) {
-            alert(currentLang === 'ar' ? "يرجى ملء جميع الحقول" : "Veuillez remplir tous les champs");
-            return;
-        }
-
-        const text = `طلب شحن جديد:\nالمنصة: ${selectedPlatform}\nالمبلغ: ${amount}$\nID/Email: ${id}`;
-        
-        if(method === 'whatsapp') {
-            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
-        } else {
-            // تلغرام يحتاج معرف مستخدم أو بوت، سنفترض توجيه عام هنا
-            window.open(`https://t.me/share/url?url=${phone}&text=${encodeURIComponent(text)}`, '_blank');
-        }
-    }
-
-    updateContent();
+    updateUI();
 </script>
 </body>
 </html>
