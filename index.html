@@ -101,7 +101,7 @@
 
 <header class="hero">
     <h1 id="heroTitle">Futur de la <span>Recharge</span></h1>
-    <div class="search-box"><input type="text" id="searchInput" placeholder="Rechercher..." onkeyup="search()"></div>
+    <div class="search-box"><input type="text" id="searchInput" onkeyup="search()"></div>
     <div class="tabs" id="tabContainer"></div>
 </header>
 
@@ -282,11 +282,11 @@
         const a = document.getElementById('mAmount').value, i = document.getElementById('mId').value;
         if(!a || !i) return alert(currentLang==='ar'?'املأ البيانات':'Champs vides');
         
-        // تم تحديث الرابط هنا
-        const waLink = "https://wa.me/message/6RCSSPKSE3YJN1";
-        const message = encodeURIComponent('🚀 COMMANDE ELITE:\nService: '+activeS.name+'\nQuantité: '+a+'\nID: '+i);
+        // تم تحديث الرقم هنا
+        const phoneNumber = "212684119141";
+        const text = `🚀 COMMANDE ELITE:\nService: ${activeS.name}\nQuantité: ${a}\nID: ${i}`;
         
-        window.open(`${waLink}?text=${message}`, '_blank');
+        window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`, '_blank');
         closeModal();
     }
 
