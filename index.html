@@ -101,7 +101,7 @@
 
 <header class="hero">
     <h1 id="heroTitle">Futur de la <span>Recharge</span></h1>
-    <div class="search-box"><input type="text" id="searchInput" onkeyup="search()"></div>
+    <div class="search-box"><input type="text" id="searchInput" placeholder="Rechercher..." onkeyup="search()"></div>
     <div class="tabs" id="tabContainer"></div>
 </header>
 
@@ -171,7 +171,6 @@
     };
 
     const platforms = [
-        // BETTING
         { name: '1XBET', icon: 'fa-solid fa-trophy', cat: 'BET', clr: '#2067b2' },
         { name: 'Melbet', icon: 'fa-solid fa-medal', cat: 'BET', clr: '#f79e1b' },
         { name: 'Linebet', icon: 'fa-solid fa-circle-check', cat: 'BET', clr: '#26a17b' },
@@ -179,7 +178,6 @@
         { name: 'MostBet', icon: 'fa-solid fa-dice', cat: 'BET', clr: '#2067b2' },
         { name: '1Win', icon: 'fa-solid fa-star', cat: 'BET', clr: '#0052ff' },
         { name: 'Megapari', icon: 'fa-solid fa-bolt', cat: 'BET', clr: '#ff0000' },
-        // CRYPTO
         { name: 'USDT (TRC20)', icon: 'fa-solid fa-t', cat: 'CRYPTO', clr: '#26a17b' },
         { name: 'Bitcoin (BTC)', icon: 'fa-brands fa-bitcoin', cat: 'CRYPTO', clr: '#f79e1b' },
         { name: 'Ethereum (ETH)', icon: 'fa-brands fa-ethereum', cat: 'CRYPTO', clr: '#627eea' },
@@ -189,7 +187,6 @@
         { name: 'Litecoin', icon: 'fa-solid fa-l', cat: 'CRYPTO', clr: '#345d9d' },
         { name: 'TRON (TRX)', icon: 'fa-solid fa-gem', cat: 'CRYPTO', clr: '#ff0013' },
         { name: 'BUSD', icon: 'fa-solid fa-dollar-sign', cat: 'CRYPTO', clr: '#f3ba2f' },
-        // BANKS
         { name: 'Wise', icon: 'fa-solid fa-building-columns', cat: 'BANK', clr: '#9fe331' },
         { name: 'PayPal', icon: 'fa-brands fa-paypal', cat: 'BANK', clr: '#003087' },
         { name: 'RedotPay', icon: 'fa-solid fa-credit-card', cat: 'BANK', clr: '#26a17b' },
@@ -198,7 +195,6 @@
         { name: 'Neteller', icon: 'fa-solid fa-n', cat: 'BANK', clr: '#82bc24' },
         { name: 'Payeer', icon: 'fa-solid fa-wallet', cat: 'BANK', clr: '#00baf2' },
         { name: 'Perfect Money', icon: 'fa-solid fa-m', cat: 'BANK', clr: '#ee1c25' },
-        // GAMES
         { name: 'PUBG Mobile', icon: 'fa-solid fa-gun', cat: 'GAME', clr: '#f79e1b' },
         { name: 'Free Fire', icon: 'fa-solid fa-fire', cat: 'GAME', clr: '#ff0000' },
         { name: 'Call of Duty', icon: 'fa-solid fa-skull', cat: 'GAME', clr: '#ffffff' },
@@ -208,7 +204,6 @@
         { name: 'League of Legends', icon: 'fa-solid fa-mask', cat: 'GAME', clr: '#0052ff' },
         { name: 'Genshin Impact', icon: 'fa-solid fa-wind', cat: 'GAME', clr: '#4eb4ff' },
         { name: 'Fortnite V-Bucks', icon: 'fa-solid fa-v', cat: 'GAME', clr: '#f79e1b' },
-        // CARDS
         { name: 'Razer Gold', icon: 'fa-solid fa-coins', cat: 'CARDS', clr: '#9fe331' },
         { name: 'Amazon', icon: 'fa-brands fa-amazon', cat: 'CARDS', clr: '#ff9900' },
         { name: 'PlayStation', icon: 'fa-brands fa-playstation', cat: 'CARDS', clr: '#003087' },
@@ -218,7 +213,6 @@
         { name: 'Xbox Card', icon: 'fa-brands fa-xbox', cat: 'CARDS', clr: '#107c10' },
         { name: 'Nintendo eShop', icon: 'fa-solid fa-n', cat: 'CARDS', clr: '#e60012' },
         { name: 'Discord Nitro', icon: 'fa-brands fa-discord', cat: 'CARDS', clr: '#5865F2' },
-        // STREAMING
         { name: 'Netflix', icon: 'fa-brands fa-netflix', cat: 'STREAM', clr: '#e50914' },
         { name: 'Spotify Premium', icon: 'fa-brands fa-spotify', cat: 'STREAM', clr: '#1ed760' },
         { name: 'TikTok Coins', icon: 'fa-brands fa-tiktok', cat: 'STREAM', clr: '#ff0050' },
@@ -287,7 +281,12 @@
     function startAI() {
         const a = document.getElementById('mAmount').value, i = document.getElementById('mId').value;
         if(!a || !i) return alert(currentLang==='ar'?'املأ البيانات':'Champs vides');
-        window.open(`https://wa.me/212713041921?text=${encodeURIComponent('🚀 COMMANDE ELITE:\nService: '+activeS.name+'\nQuantité: '+a+'\nID: '+i)}`, '_blank');
+        
+        // تم تحديث الرابط هنا
+        const waLink = "https://wa.me/message/6RCSSPKSE3YJN1";
+        const message = encodeURIComponent('🚀 COMMANDE ELITE:\nService: '+activeS.name+'\nQuantité: '+a+'\nID: '+i);
+        
+        window.open(`${waLink}?text=${message}`, '_blank');
         closeModal();
     }
 
